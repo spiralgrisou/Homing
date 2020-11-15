@@ -38,6 +38,7 @@ namespace HomingClient
             this.ClientSize = new System.Drawing.Size(686, 390);
             this.Name = "ClientForm";
             this.Text = " ";
+            this.Load += new System.EventHandler(this.ClientForm_Load);
             this.ResumeLayout(false);
 
         }

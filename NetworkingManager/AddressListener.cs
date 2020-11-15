@@ -15,7 +15,6 @@ namespace NetworkingManager
         private bool _listening { get; set; }
         private TcpListener _tcpListener { get; set; }
         private bool _idle { get; set; }
-
         private RouterListener _router { get; set; }
 
         public AddressListener(string ADDRESS, int PORT, RouterListener router)
@@ -42,7 +41,6 @@ namespace NetworkingManager
                     else
                         _idle = true;
                 }
-                _tcpListener.Stop();
             });
             new Thread(threadRef).Start();
         }
@@ -59,11 +57,12 @@ namespace NetworkingManager
 
         public void Kill()
         {
-            foreach(Connection connection in _connections)
+            _listening = false;
+            foreach (Connection connection in _connections.ToArray())
             {
                 connection.Disconnect();
             }
-            _listening = false;
+            _tcpListener.Stop();
         }
 
         private void Disconnect(Connection connection)
