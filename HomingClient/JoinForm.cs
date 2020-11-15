@@ -53,7 +53,7 @@ namespace HomingClient
                 useDefaultAddr = true;
             if (String.IsNullOrEmpty(portBox.Text))
                 useDefaultPort = true;
-            ServerForm serverForm = new ServerForm();
+            ClientForm serverForm = new ClientForm();
             if (useDefaultAddr)
                 serverForm.IP_ADDRESS = defaultAddress;
             else
