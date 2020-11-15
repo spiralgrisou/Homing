@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homing", "Homing\Homing.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkingManager", "NetworkingManager\NetworkingManager.csproj", "{7BE153F7-434F-4381-9105-9BF74EA6A7AF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomingClient", "HomingClient\HomingClient.csproj", "{B3A1B48A-5523-455B-A573-BEE1FDA4DC4F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7BE153F7-434F-4381-9105-9BF74EA6A7AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BE153F7-434F-4381-9105-9BF74EA6A7AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7BE153F7-434F-4381-9105-9BF74EA6A7AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3A1B48A-5523-455B-A573-BEE1FDA4DC4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3A1B48A-5523-455B-A573-BEE1FDA4DC4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3A1B48A-5523-455B-A573-BEE1FDA4DC4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3A1B48A-5523-455B-A573-BEE1FDA4DC4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
