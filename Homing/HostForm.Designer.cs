@@ -34,11 +34,11 @@ namespace Homing
             this.addressBox = new System.Windows.Forms.TextBox();
             this.addressLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.hostBtn = new System.Windows.Forms.Button();
-            this.exitBtn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.portBox = new System.Windows.Forms.TextBox();
             this.portLabel = new System.Windows.Forms.Label();
+            this.exitBtn = new System.Windows.Forms.Button();
+            this.hostBtn = new System.Windows.Forms.Button();
+            this.portBox = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
@@ -93,26 +93,6 @@ namespace Homing
             this.panel1.Size = new System.Drawing.Size(577, 183);
             this.panel1.TabIndex = 4;
             // 
-            // hostBtn
-            // 
-            this.hostBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.hostBtn.Location = new System.Drawing.Point(363, 134);
-            this.hostBtn.Name = "hostBtn";
-            this.hostBtn.Size = new System.Drawing.Size(93, 30);
-            this.hostBtn.TabIndex = 1;
-            this.hostBtn.Text = "Host";
-            this.hostBtn.UseVisualStyleBackColor = true;
-            // 
-            // exitBtn
-            // 
-            this.exitBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.exitBtn.Location = new System.Drawing.Point(462, 134);
-            this.exitBtn.Name = "exitBtn";
-            this.exitBtn.Size = new System.Drawing.Size(93, 30);
-            this.exitBtn.TabIndex = 2;
-            this.exitBtn.Text = "Exit";
-            this.exitBtn.UseVisualStyleBackColor = true;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -123,15 +103,6 @@ namespace Homing
             this.label2.TabIndex = 3;
             this.label2.Text = "Do you want to host a Homing server?";
             // 
-            // portBox
-            // 
-            this.portBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.portBox.Location = new System.Drawing.Point(14, 94);
-            this.portBox.Name = "portBox";
-            this.portBox.Size = new System.Drawing.Size(545, 20);
-            this.portBox.TabIndex = 2;
-            // 
             // portLabel
             // 
             this.portLabel.AutoSize = true;
@@ -140,6 +111,37 @@ namespace Homing
             this.portLabel.Size = new System.Drawing.Size(97, 13);
             this.portLabel.TabIndex = 3;
             this.portLabel.Text = "<default port label>";
+            // 
+            // exitBtn
+            // 
+            this.exitBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.exitBtn.Location = new System.Drawing.Point(462, 134);
+            this.exitBtn.Name = "exitBtn";
+            this.exitBtn.Size = new System.Drawing.Size(93, 30);
+            this.exitBtn.TabIndex = 2;
+            this.exitBtn.Text = "Exit";
+            this.exitBtn.UseVisualStyleBackColor = true;
+            this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
+            // 
+            // hostBtn
+            // 
+            this.hostBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.hostBtn.Location = new System.Drawing.Point(363, 134);
+            this.hostBtn.Name = "hostBtn";
+            this.hostBtn.Size = new System.Drawing.Size(93, 30);
+            this.hostBtn.TabIndex = 1;
+            this.hostBtn.Text = "Host";
+            this.hostBtn.UseVisualStyleBackColor = true;
+            this.hostBtn.Click += new System.EventHandler(this.hostBtn_Click);
+            // 
+            // portBox
+            // 
+            this.portBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.portBox.Location = new System.Drawing.Point(14, 94);
+            this.portBox.Name = "portBox";
+            this.portBox.Size = new System.Drawing.Size(545, 20);
+            this.portBox.TabIndex = 2;
             // 
             // pictureBox1
             // 
@@ -165,7 +167,7 @@ namespace Homing
     " certain port for other people around the world to join,\r\n\r\n(It will work in lan" +
     " without port forwarding)";
             // 
-            // ServerForm
+            // HostForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -176,8 +178,9 @@ namespace Homing
             this.Controls.Add(this.creditLink);
             this.MaximumSize = new System.Drawing.Size(736, 317);
             this.MinimumSize = new System.Drawing.Size(593, 316);
-            this.Name = "ServerForm";
+            this.Name = "HostForm";
             this.Text = "Host a server";
+            this.Load += new System.EventHandler(this.HostForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
