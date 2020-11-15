@@ -80,13 +80,15 @@ namespace Homing
                     }
                     serverForm.PORT = PORT;
                 }
-                catch (InvalidCastException)
+                catch (FormatException)
                 {
                     MessageBox.Show("Please enter a valid port, or leave the port box empty to use the default port.", "Argument Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
-            serverForm.Show();
+            Hide();
+            serverForm.ShowDialog();
+            Close();
         }
     }
 }
