@@ -125,6 +125,8 @@ namespace Homing
             this.MinimumSize = new System.Drawing.Size(507, 424);
             this.Name = "ServerForm";
             this.Text = "Server Manager";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ServerForm_FormClosed);
+            this.Load += new System.EventHandler(this.ServerForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.ChAllView.ResumeLayout(false);
             this.ResumeLayout(false);
