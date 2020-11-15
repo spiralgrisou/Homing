@@ -45,6 +45,7 @@ namespace Homing
         private void hostBtn_Click(object sender, EventArgs e)
         {
             string defaultAddress = NetworkingInformation.GetLocalIPAddress();
+            
             int defaultPort = 1337;
             bool useDefaultAddr = false;
             bool useDefaultPort = false;
@@ -56,11 +57,35 @@ namespace Homing
             if (useDefaultAddr)
                 serverForm.IP_ADDRESS = defaultAddress;
             else
-                serverForm.IP_ADDRESS = addressBox.Text;
+            {
+                if (NetworkingInformation.IsValidIPAddress(addressBox.Text))
+                    serverForm.IP_ADDRESS = addressBox.Text;
+                else
+                {
+                    MessageBox.Show("Please enter a valid IP Address, or leave it empty to use the default address.", "Argument Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
             if (useDefaultPort)
                 serverForm.PORT = defaultPort;
             else
-                serverForm.PORT = Int32.Parse(portBox.Text);
+            {
+                try
+                {
+                    int PORT = Int32.Parse(portBox.Text);
+                    if (PORT < 0)
+                    {
+                        MessageBox.Show("Ports need to be greater than 0.", "Argument Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    serverForm.PORT = PORT;
+                }
+                catch (InvalidCastException)
+                {
+                    MessageBox.Show("Please enter a valid port, or leave the port box empty to use the default port.", "Argument Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
             serverForm.Show();
         }
     }

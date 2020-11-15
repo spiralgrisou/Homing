@@ -18,5 +18,11 @@ namespace NetworkingManager
             }
             return null;
         }
+        
+        public static bool IsValidIPAddress(string address)
+        {
+            IPAddress addr;
+            return IPAddress.TryParse(address, out addr);
+        }
     }
 }
