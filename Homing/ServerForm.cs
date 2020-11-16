@@ -27,11 +27,42 @@ namespace Homing
 
         private void ServerForm_Load(object sender, EventArgs e)
         {
-            activeLabel.Text = "Server Channels: (" + ActiveUsers + " users are active)";
+            UpdateActiveUsers();
             Router.ServerListener listener = Listener;
+            Router.ServerConnected connector = Connector;
+            Router.ServerDisconnected disconnector = Disconnector;
             _router = new Router();
-            Server server = _router.CreateServer(listener, IP_ADDRESS, PORT);
+            Server server = _router.CreateServer(listener, connector, disconnector, IP_ADDRESS, PORT);
             MessageBox.Show("Server created in " + IP_ADDRESS + " on Port: " + PORT + ", Active Connections: " + server.GetHostServer().GetConnectionsCount(), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private delegate void SetTextCallback();
+
+        private void UpdateActiveUsers()
+        {
+            if(activeLabel.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(UpdateActiveUsers);
+                Invoke(d);
+            }
+            else
+            {
+                activeLabel.Text = "Server Channels: (" + ActiveUsers + " users are active)";
+            }
+        }
+
+        public void Connector(Connection connection)
+        {
+            MessageBox.Show("User connected!");
+            ActiveUsers++;
+            UpdateActiveUsers();
+        }
+
+        public void Disconnector(Connection connection)
+        {
+            MessageBox.Show("User disconnected!");
+            ActiveUsers--;
+            UpdateActiveUsers();
         }
 
         public void Listener(string Message)

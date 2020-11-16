@@ -11,15 +11,23 @@ namespace NetworkingManager
     {
         public delegate void RouterListener(AddressListener identifier, string Message);
 
+        public delegate void RouterConnected(AddressListener identifier, Connection connection);
+
+        public delegate void RouterDisconnected(AddressListener identifier, Connection connection);
+
         private List<Connection> _connections { get; set; }
         private bool _listening { get; set; }
         private TcpListener _tcpListener { get; set; }
         private bool _idle { get; set; }
         private RouterListener _router { get; set; }
+        private RouterConnected _routerConnected { get; set; }
+        private RouterDisconnected _routerDisconnected { get; set; }
 
-        public AddressListener(string ADDRESS, int PORT, RouterListener router)
+        public AddressListener(string ADDRESS, int PORT, RouterListener router, RouterConnected connected, RouterDisconnected disconnected)
         {
             _router = router;
+            _routerConnected = connected;
+            _routerDisconnected = disconnected;
             _connections = new List<Connection>();
             _listening = true;
             _tcpListener = new TcpListener(IPAddress.Parse(ADDRESS), PORT);
@@ -37,6 +45,7 @@ namespace NetworkingManager
                         Connection.HostDisconnect disconnector = Disconnect;
                         Connection connection = new Connection(_tcpListener.AcceptTcpClient(), listener, disconnector);
                         _connections.Add(connection);
+                        _routerConnected(this, connection);
                     }
                     else
                         _idle = true;
@@ -61,6 +70,7 @@ namespace NetworkingManager
             foreach (Connection connection in _connections.ToArray())
             {
                 connection.Disconnect();
+                _routerDisconnected(this, connection);
             }
             _tcpListener.Stop();
         }
@@ -68,7 +78,10 @@ namespace NetworkingManager
         private void Disconnect(Connection connection)
         {
             if(_connections.Contains(connection))
+            {
                 _connections.Remove(connection);
+                _routerDisconnected(this, connection);
+            }
         }
 
         private void ConnectionListener(Connection Messager, string Message)
