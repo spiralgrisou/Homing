@@ -21,13 +21,13 @@ namespace HomingClient
 
         private void JoinForm_Load(object sender, EventArgs e)
         {
-            string currentAddress = NetworkingInformation.GetLocalIPAddress();
+            string currentAddress = NetInfo.GetLocalIPAddress();
             if (String.IsNullOrEmpty(currentAddress))
             {
                 MessageBox.Show("No network connection was found, Please connect to the internet and try again.", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
-            addressLabel.Text = "Enter an address here: (Default address used: " + NetworkingInformation.GetLocalIPAddress() + ")";
+            addressLabel.Text = "Enter an address here: (Default address used: " + NetInfo.GetLocalIPAddress() + ")";
             portLabel.Text = "Enter a port to host on here: (Default port used: 1337)";
         }
 
@@ -44,7 +44,7 @@ namespace HomingClient
 
         private void joinBtn_Click(object sender, EventArgs e)
         {
-            string defaultAddress = NetworkingInformation.GetLocalIPAddress();
+            string defaultAddress = NetInfo.GetLocalIPAddress();
 
             int defaultPort = 1337;
             bool useDefaultAddr = false;
@@ -58,7 +58,7 @@ namespace HomingClient
                 serverForm.IP_ADDRESS = defaultAddress;
             else
             {
-                if (NetworkingInformation.IsValidIPAddress(addressBox.Text))
+                if (NetInfo.IsValidIPAddress(addressBox.Text))
                     serverForm.IP_ADDRESS = addressBox.Text;
                 else
                 {
