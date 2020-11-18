@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using System.Threading.Tasks;
 using System.Net.Sockets;
 
@@ -42,9 +43,11 @@ namespace NetworkingManager
                     {
                         // Client disconnected
                         Kill();
+                        break;
                     }
                     string msg = Encoding.ASCII.GetString(tempBuffer);
-                    _messageDispatcher(this, msg);
+                    if(!String.IsNullOrWhiteSpace(msg) && !String.IsNullOrEmpty(msg))
+                        _messageDispatcher(this, msg);
                 }
             });
         }

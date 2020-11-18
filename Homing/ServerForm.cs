@@ -17,8 +17,7 @@ namespace Homing
         public int PORT;
 
         public int ActiveUsers = 0;
-
-        private Router _router { get; set; }
+        private NetServer _netServer { get; set; }
 
         public ServerForm()
         {
@@ -28,12 +27,11 @@ namespace Homing
         private void ServerForm_Load(object sender, EventArgs e)
         {
             UpdateActiveUsers();
-            Router.ServerListener listener = Listener;
-            Router.ServerConnected connector = Connector;
-            Router.ServerDisconnected disconnector = Disconnector;
-            _router = new Router();
-            NetServer server = _router.CreateServer(listener, connector, disconnector, IP_ADDRESS, PORT);
-            MessageBox.Show("Server created in " + IP_ADDRESS + " on Port: " + PORT + ", Active Connections: " + server.GetHostServer().GetConnectionsCount(), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            NetDelegates.MessageDispatcher dispatcher = Listener;
+            NetDelegates.ConnectionSuccess connectionSuccess = Connector;
+            NetDelegates.ConnectionDisconnection disconnected = Disconnector;
+            _netServer = new NetServer(IP_ADDRESS, PORT, 5, 50, dispatcher, disconnected, connectionSuccess);
+            MessageBox.Show("Server created in " + IP_ADDRESS + " on Port: " + PORT + ", Active Connections: " + _netServer.GetConnectionsCount(), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private delegate void SetTextCallback();
@@ -51,28 +49,28 @@ namespace Homing
             }
         }
 
-        public void Connector(Connection connection)
+        public void Connector(NetConnection connection)
         {
-            MessageBox.Show("User connected!");
             ActiveUsers++;
             UpdateActiveUsers();
+            MessageBox.Show("User connected!");
         }
 
-        public void Disconnector(Connection connection)
+        public void Disconnector(NetConnection connection)
         {
-            MessageBox.Show("User disconnected!");
             ActiveUsers--;
             UpdateActiveUsers();
+            MessageBox.Show("User disconnected!");
         }
 
-        public void Listener(string Message)
+        public void Listener(NetConnection connection, string msg)
         {
-            MessageBox.Show(Message);
+            MessageBox.Show(msg);
         }
 
         private void ServerForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _router.CloseDown();
+            _netServer.Kill();
         }
     }
 }

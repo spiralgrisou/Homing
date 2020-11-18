@@ -10,6 +10,7 @@
         #region NetClient Delegates
         public delegate void MessageReceived(string msg);
         public delegate void Disconnected();
+        public delegate void Connected();
         #endregion
     }
 }

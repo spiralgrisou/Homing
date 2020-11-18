@@ -47,6 +47,7 @@ namespace NetworkingManager
             ListenLoop();
         }
 
+        // Connection listener
         private async void ListenLoop()
         {
             await Task.Run(async () =>
@@ -57,9 +58,9 @@ namespace NetworkingManager
                     // If we are not over the limit then accept connections
                     if (_netConnections.Count < _serverLimit)
                     {
-                        Socket connectedSocket = await _serverSocket.AcceptAsync();
                         try
                         {
+                            Socket connectedSocket = await _serverSocket.AcceptAsync();
                             _idle = false;
                             byte[] buffer = Encoding.ASCII.GetBytes("connection/success");
                             connectedSocket.Send(buffer);
@@ -77,6 +78,7 @@ namespace NetworkingManager
             });
         }
 
+        // Connection disconnection listener
         private void Destroyer(NetConnection connection)
         {
             if (_netConnections.Contains(connection))
@@ -95,6 +97,11 @@ namespace NetworkingManager
         {
             _dead = true;
             _netConnections = new List<NetConnection>();
+        }
+
+        public int GetConnectionsCount()
+        {
+            return _netConnections.Count;
         }
 
         public bool isDead()
