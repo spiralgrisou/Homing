@@ -8,7 +8,7 @@ using System.Net.Sockets;
 
 namespace NetworkingManager
 {
-    public class Server
+    public class NetServer
     {
         
     }

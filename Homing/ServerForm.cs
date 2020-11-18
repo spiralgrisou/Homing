@@ -32,7 +32,7 @@ namespace Homing
             Router.ServerConnected connector = Connector;
             Router.ServerDisconnected disconnector = Disconnector;
             _router = new Router();
-            Server server = _router.CreateServer(listener, connector, disconnector, IP_ADDRESS, PORT);
+            NetServer server = _router.CreateServer(listener, connector, disconnector, IP_ADDRESS, PORT);
             MessageBox.Show("Server created in " + IP_ADDRESS + " on Port: " + PORT + ", Active Connections: " + server.GetHostServer().GetConnectionsCount(), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
