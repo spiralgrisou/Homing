@@ -29,6 +29,7 @@ namespace HomingClient
             _client = new Client(IP_ADDRESS, PORT, readFunc);
             _client.SendMessage("yooo cuz");
             _client.Kill();
+            // Application.Exit();
         }
 
         private void client_Connected(string message)

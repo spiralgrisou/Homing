@@ -42,13 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client.cs" />
-    <Compile Include="Connection.cs" />
-    <Compile Include="IListener.cs" />
-    <Compile Include="AddressListener.cs" />
-    <Compile Include="NetworkingInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Router.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
