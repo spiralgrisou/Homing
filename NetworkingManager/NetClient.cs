@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net;
@@ -90,7 +88,7 @@ namespace NetworkingManager
             });
         }
 
-        private void SendCommand(string command, params string[] arguments)
+        public void SendCommand(string command, params string[] arguments)
         {
             string finalString = String.Empty;
             finalString += command;

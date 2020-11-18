@@ -2,7 +2,6 @@
 using System.Net;
 using System.Net.Sockets;
 
-
 namespace NetworkingManager
 {
     public class NetInfo
