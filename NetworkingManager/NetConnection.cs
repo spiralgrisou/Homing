@@ -12,8 +12,8 @@ namespace NetworkingManager
         private Socket _clientSocket { get; set; }
         private NetDelegates.MessageDispatcher _messageDispatcher { get; set; }
         private NetDelegates.ConnectionDisconnection _connectionDisconnection { get; set; }
-        private int _maxReceivable = 1024;
-        private bool _dead = false;
+        private int _maxReceivable { get; set; }
+        private bool _dead { get; set; }
 
         public NetConnection(Socket clientSocket, 
             NetDelegates.MessageDispatcher messageDispatcher,
@@ -23,6 +23,8 @@ namespace NetworkingManager
             _clientSocket = clientSocket;
             _messageDispatcher = messageDispatcher;
             _connectionDisconnection = connectionDisconnection;
+            _maxReceivable = 1024;
+            _dead = false;
 
             // Listener
             MessageTranslator();

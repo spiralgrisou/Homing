@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NetClient.cs" />
     <Compile Include="NetDelegates.cs" />
     <Compile Include="NetInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

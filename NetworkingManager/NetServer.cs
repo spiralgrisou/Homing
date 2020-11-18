@@ -35,11 +35,13 @@ namespace NetworkingManager
             _connectionDisconnection = Destroyer;
             _topDisconnection = disconnectionCall;
             _connectionSuccess = connectionCall;
+            _dead = false;
+            _idle = true;
 
             // Server Init
             if (NetInfo.IsValidIPAddress(_ipAddress))
             {
-                _serverSocket.Bind(new IPEndPoint(IPAddress.Parse(_ipAddress), port));
+                _serverSocket.Bind(new IPEndPoint(IPAddress.Parse(_ipAddress), _port));
                 _serverSocket.Listen(_backLog);
             }
 
@@ -53,13 +55,15 @@ namespace NetworkingManager
             {
                 while(!_dead)
                 {
+                    _idle = true;
                     // If we are not over the limit then accept connections
                     if (_netConnections.Count < _serverLimit)
                     {
                         Socket connectedSocket = await _serverSocket.AcceptAsync();
                         try
                         {
-                            byte[] buffer = Encoding.ASCII.GetBytes("connection success");
+                            _idle = false;
+                            byte[] buffer = Encoding.ASCII.GetBytes("connection/success");
                             connectedSocket.Send(buffer);
                             NetConnection connection = new NetConnection(connectedSocket, _msgDispatcher, _connectionDisconnection);
                             _netConnections.Add(connection);
