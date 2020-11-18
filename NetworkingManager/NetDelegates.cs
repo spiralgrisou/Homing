@@ -8,13 +8,8 @@ namespace NetworkingManager
 {
     public class NetDelegates
     {
-        #region NetConnection Delegates
-        public delegate void MessageDispatcherC(NetConnection connection, string msg);
-        #endregion
-        #region NetServer Delegates
-        public delegate void MessageDispatcherS(string msg);
-        public delegate void ConnectionValidator(NetConnection connection);
-        public delegate void ConnectionDestroyer(NetConnection connection);
-        #endregion
+        public delegate void MessageDispatcher(NetConnection connection, string msg);
+        public delegate void ConnectionSuccess(NetConnection connection);
+        public delegate void ConnectionDisconnection(NetConnection connection);
     }
 }

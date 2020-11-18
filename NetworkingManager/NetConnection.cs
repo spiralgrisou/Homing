@@ -10,19 +10,19 @@ namespace NetworkingManager
     public class NetConnection
     {
         private Socket _clientSocket { get; set; }
-        private NetDelegates.MessageDispatcherC _messageDispatcher { get; set; }
-        private NetDelegates.ConnectionDestroyer _connectionDestroyer { get; set; }
+        private NetDelegates.MessageDispatcher _messageDispatcher { get; set; }
+        private NetDelegates.ConnectionDisconnection _connectionDisconnection { get; set; }
         private int _maxReceivable = 1024;
         private bool _dead = false;
 
         public NetConnection(Socket clientSocket, 
-            NetDelegates.MessageDispatcherC messageDispatcher,
-            NetDelegates.ConnectionDestroyer connectionDestroyer)
+            NetDelegates.MessageDispatcher messageDispatcher,
+            NetDelegates.ConnectionDisconnection connectionDisconnection)
         {
             // Init
             _clientSocket = clientSocket;
             _messageDispatcher = messageDispatcher;
-            _connectionDestroyer = connectionDestroyer;
+            _connectionDisconnection = connectionDisconnection;
 
             // Listener
             MessageTranslator();
@@ -53,7 +53,7 @@ namespace NetworkingManager
         public void Kill()
         {
             _dead = true;
-            _connectionDestroyer(this);
+            _connectionDisconnection(this);
         }
 
         public bool isDead()
