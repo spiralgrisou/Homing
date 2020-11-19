@@ -43,8 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NetClient.cs" />
+    <Compile Include="NetData.cs" />
     <Compile Include="NetDelegates.cs" />
     <Compile Include="NetInfo.cs" />
+    <Compile Include="NetParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NetServer.cs" />
     <Compile Include="NetConnection.cs" />
