@@ -27,9 +27,9 @@ namespace Homing
         private void ServerForm_Load(object sender, EventArgs e)
         {
             UpdateActiveUsers();
-            NetDelegates.MessageDispatcher dispatcher = Listener;
-            NetDelegates.ConnectionSuccess connectionSuccess = Connector;
-            NetDelegates.ConnectionDisconnection disconnected = Disconnector;
+            NetData.MessageDispatcher dispatcher = Listener;
+            NetData.ConnectionSuccess connectionSuccess = Connector;
+            NetData.ConnectionDisconnection disconnected = Disconnector;
             _netServer = new NetServer(IP_ADDRESS, PORT, 5, 50, dispatcher, disconnected, connectionSuccess);
             MessageBox.Show("Server created in " + IP_ADDRESS + " on Port: " + PORT + ", Active Connections: " + _netServer.GetConnectionsCount(), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

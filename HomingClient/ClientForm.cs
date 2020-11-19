@@ -16,9 +16,9 @@ namespace HomingClient
         public string IP_ADDRESS { get; set; }
         public int PORT { get; set; }
         private NetClient _client { get; set; }
-        private NetDelegates.Connected _connectionEvent { get; set; }
-        private NetDelegates.Disconnected _disconnectionEvent { get; set; }
-        private NetDelegates.MessageReceived _messageEvent { get; set; }
+        private NetData.Connected _connectionEvent { get; set; }
+        private NetData.Disconnected _disconnectionEvent { get; set; }
+        private NetData.MessageReceived _messageEvent { get; set; }
 
         public ClientForm()
         {

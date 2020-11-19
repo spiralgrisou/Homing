@@ -8,14 +8,14 @@ namespace NetworkingManager
     public class NetConnection
     {
         private Socket _clientSocket { get; set; }
-        private NetDelegates.MessageDispatcher _messageDispatcher { get; set; }
-        private NetDelegates.ConnectionDisconnection _connectionDisconnection { get; set; }
+        private NetData.MessageDispatcher _messageDispatcher { get; set; }
+        private NetData.ConnectionDisconnection _connectionDisconnection { get; set; }
         private int _maxReceivable { get; set; }
         private bool _dead { get; set; }
 
-        public NetConnection(Socket clientSocket, 
-            NetDelegates.MessageDispatcher messageDispatcher,
-            NetDelegates.ConnectionDisconnection connectionDisconnection)
+        public NetConnection(Socket clientSocket,
+            NetData.MessageDispatcher messageDispatcher,
+            NetData.ConnectionDisconnection connectionDisconnection)
         {
             // Init
             _clientSocket = clientSocket;

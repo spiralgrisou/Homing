@@ -17,12 +17,12 @@ namespace NetworkingManager
         private int _port { get; set; }
         private bool _idle { get; set; }
         private bool _dead { get; set; }
-        private NetDelegates.MessageDispatcher _msgDispatcher { get; set; }
-        private NetDelegates.ConnectionDisconnection _connectionDisconnection { get; set; }
-        private NetDelegates.ConnectionDisconnection _topDisconnection { get; set; }
-        private NetDelegates.ConnectionSuccess _connectionSuccess { get; set; }
+        private NetData.MessageDispatcher _msgDispatcher { get; set; }
+        private NetData.ConnectionDisconnection _connectionDisconnection { get; set; }
+        private NetData.ConnectionDisconnection _topDisconnection { get; set; }
+        private NetData.ConnectionSuccess _connectionSuccess { get; set; }
 
-        public NetServer(string address, int port, int queueLength, int serverLimit, NetDelegates.MessageDispatcher msgDispatcher, NetDelegates.ConnectionDisconnection disconnectionCall, NetDelegates.ConnectionSuccess connectionCall)
+        public NetServer(string address, int port, int queueLength, int serverLimit, NetData.MessageDispatcher msgDispatcher, NetData.ConnectionDisconnection disconnectionCall, NetData.ConnectionSuccess connectionCall)
         {
             // Init
             _ipAddress = address;

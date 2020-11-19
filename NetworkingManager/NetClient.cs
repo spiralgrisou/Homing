@@ -23,13 +23,13 @@ namespace NetworkingManager
         private bool _logging { get; set; }
         private bool _exitPerms { get; set; }
         private LoggingMethod _loggingMethod { get; set; }
-        private NetDelegates.Disconnected _clientDisconnected { get; set; }
-        private NetDelegates.MessageReceived _messageReciever { get; set; }
-        private NetDelegates.Connected _clientConnected { get; set; }
+        private NetData.Disconnected _clientDisconnected { get; set; }
+        private NetData.MessageReceived _messageReciever { get; set; }
+        private NetData.Connected _clientConnected { get; set; }
 
-        public NetClient(string address, int port, NetDelegates.Connected clientConnecter,
-            NetDelegates.Disconnected clientDisconnecter,
-            NetDelegates.MessageReceived messageReciever,
+        public NetClient(string address, int port, NetData.Connected clientConnecter,
+            NetData.Disconnected clientDisconnecter,
+            NetData.MessageReceived messageReciever,
             bool logging = false, bool exittingPerms = false, LoggingMethod loggingMethod = LoggingMethod.Console)
         {
             // Init
