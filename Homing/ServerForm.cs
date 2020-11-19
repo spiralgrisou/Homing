@@ -53,14 +53,12 @@ namespace Homing
         {
             ActiveUsers++;
             UpdateActiveUsers();
-            MessageBox.Show("User connected!");
         }
 
         public void Disconnector(NetConnection connection)
         {
             ActiveUsers--;
             UpdateActiveUsers();
-            MessageBox.Show("User disconnected!");
         }
 
         public void Listener(NetConnection connection, string msg)

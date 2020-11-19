@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
+using System.Windows.Forms;
 
 namespace NetworkingManager
 {
@@ -21,8 +23,11 @@ namespace NetworkingManager
         private NetData.ConnectionDisconnection _connectionDisconnection { get; set; }
         private NetData.ConnectionDisconnection _topDisconnection { get; set; }
         private NetData.ConnectionSuccess _connectionSuccess { get; set; }
+        private bool _logging { get; set; }
+        private NetData.LoggingMethod _loggingMethod { get; set; }
+        private bool _exitPerms { get; set; }
 
-        public NetServer(string address, int port, int queueLength, int serverLimit, NetData.MessageDispatcher msgDispatcher, NetData.ConnectionDisconnection disconnectionCall, NetData.ConnectionSuccess connectionCall)
+        public NetServer(string address, int port, int queueLength, int serverLimit, NetData.MessageDispatcher msgDispatcher, NetData.ConnectionDisconnection disconnectionCall, NetData.ConnectionSuccess connectionCall, bool logging = false, bool exittingPerms = false, NetData.LoggingMethod loggingMethod = NetData.LoggingMethod.Console)
         {
             // Init
             _ipAddress = address;
@@ -35,6 +40,9 @@ namespace NetworkingManager
             _connectionSuccess = connectionCall;
             _dead = false;
             _idle = true;
+            _logging = logging;
+            _loggingMethod = _loggingMethod;
+            _exitPerms = exittingPerms;
 
             // Server Init
             if (NetInfo.IsValidIPAddress(_ipAddress))
@@ -85,6 +93,30 @@ namespace NetworkingManager
             {
                 _netConnections.Remove(connection);
                 _topDisconnection(connection);
+            }
+        }
+
+        private void Log(string message, bool exit = false, bool restrictConsole = false, string formCaption = "unassigned", MessageBoxButtons buttons = MessageBoxButtons.OK, MessageBoxIcon icon = MessageBoxIcon.Information)
+        {
+            if (_logging)
+            {
+                bool useConsole = true;
+                switch (_loggingMethod)
+                {
+                    case NetData.LoggingMethod.Forms:
+                        if (!restrictConsole)
+                            useConsole = false;
+                        break;
+                    case NetData.LoggingMethod.Console:
+                        useConsole = true;
+                        break;
+                }
+                if (useConsole)
+                    Console.WriteLine(message);
+                else
+                    MessageBox.Show(message, formCaption, buttons, icon);
+                if (exit && _exitPerms)
+                    Environment.Exit(0);
             }
         }
 

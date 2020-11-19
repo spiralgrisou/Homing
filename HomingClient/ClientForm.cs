@@ -46,7 +46,31 @@ namespace HomingClient
 
         private void message_Received(string msg)
         {
-            MessageBox.Show($"Msg recieved: {msg}");
+            try
+            {
+                NetMessage message = NetParser.ParseMessage(msg);
+                List<string> args = message.GetArguments();
+                if (message.HasCommand())
+                {
+                    string command = message.GetCommand();
+                    switch (command)
+                    {
+                        case "connection":
+                            string status = args[0];
+                            if (status != "success")
+                            {
+                                MessageBox.Show(status, "Connection status", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                Environment.Exit(0);
+                            }
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Something went wrong
+                throw new Exception(ex.Message);
+            }
         }
     }
 }
