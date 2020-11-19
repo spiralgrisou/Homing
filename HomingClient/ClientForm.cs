@@ -19,12 +19,14 @@ namespace HomingClient
         private NetData.Connected _connectionEvent { get; set; }
         private NetData.Disconnected _disconnectionEvent { get; set; }
         private NetData.MessageReceived _messageEvent { get; set; }
+        private int _activeUsers { get; set; }
 
         public ClientForm()
         {
             _connectionEvent = client_Connected;
             _disconnectionEvent = client_Disconnected;
             _messageEvent = message_Received;
+            _activeUsers = 0;
             InitializeComponent();
         }
 
@@ -36,12 +38,31 @@ namespace HomingClient
 
         private void client_Connected()
         {
+            _activeUsers++;
+            UpdateActiveUsers();
             MessageBox.Show("Connected!");
         }
 
         private void client_Disconnected()
         {
+            _activeUsers--;
+            UpdateActiveUsers();
             MessageBox.Show("Disconnected!");
+        }
+
+        private delegate void SetTextCallback();
+
+        private void UpdateActiveUsers()
+        {
+            if (activeLabel.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(UpdateActiveUsers);
+                Invoke(d);
+            }
+            else
+            {
+                activeLabel.Text = "Server Channels: (" + _activeUsers + " users are active)";
+            }
         }
 
         private void message_Received(string msg)

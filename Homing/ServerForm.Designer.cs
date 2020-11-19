@@ -31,12 +31,12 @@ namespace Homing
         {
             this.serverView = new System.Windows.Forms.TreeView();
             this.activeLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.announceBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.channelsView = new System.Windows.Forms.TabControl();
             this.ChAllView = new System.Windows.Forms.TabPage();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.tabControl1.SuspendLayout();
+            this.aChannelsView = new System.Windows.Forms.ListView();
+            this.channelsView.SuspendLayout();
             this.ChAllView.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,14 +58,14 @@ namespace Homing
             this.activeLabel.TabIndex = 1;
             this.activeLabel.Text = "<active users>";
             // 
-            // textBox1
+            // announceBox
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.announceBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(190, 411);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(513, 20);
-            this.textBox1.TabIndex = 2;
+            this.announceBox.Location = new System.Drawing.Point(190, 411);
+            this.announceBox.Name = "announceBox";
+            this.announceBox.Size = new System.Drawing.Size(513, 20);
+            this.announceBox.TabIndex = 2;
             // 
             // label1
             // 
@@ -78,21 +78,21 @@ namespace Homing
             this.label1.TabIndex = 3;
             this.label1.Text = "Announce to all channels: (Enter to announce)";
             // 
-            // tabControl1
+            // channelsView
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.channelsView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.ChAllView);
-            this.tabControl1.Location = new System.Drawing.Point(193, 9);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(510, 383);
-            this.tabControl1.TabIndex = 4;
+            this.channelsView.Controls.Add(this.ChAllView);
+            this.channelsView.Location = new System.Drawing.Point(193, 9);
+            this.channelsView.Name = "channelsView";
+            this.channelsView.SelectedIndex = 0;
+            this.channelsView.Size = new System.Drawing.Size(510, 383);
+            this.channelsView.TabIndex = 4;
             // 
             // ChAllView
             // 
-            this.ChAllView.Controls.Add(this.listView1);
+            this.ChAllView.Controls.Add(this.aChannelsView);
             this.ChAllView.Location = new System.Drawing.Point(4, 22);
             this.ChAllView.Name = "ChAllView";
             this.ChAllView.Padding = new System.Windows.Forms.Padding(3);
@@ -101,24 +101,24 @@ namespace Homing
             this.ChAllView.Text = "All Channels";
             this.ChAllView.UseVisualStyleBackColor = true;
             // 
-            // listView1
+            // aChannelsView
             // 
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(3, 3);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(496, 351);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.aChannelsView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.aChannelsView.HideSelection = false;
+            this.aChannelsView.Location = new System.Drawing.Point(3, 3);
+            this.aChannelsView.Name = "aChannelsView";
+            this.aChannelsView.Size = new System.Drawing.Size(496, 351);
+            this.aChannelsView.TabIndex = 0;
+            this.aChannelsView.UseCompatibleStateImageBehavior = false;
             // 
             // ServerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(715, 443);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.channelsView);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.announceBox);
             this.Controls.Add(this.activeLabel);
             this.Controls.Add(this.serverView);
             this.MaximumSize = new System.Drawing.Size(823, 555);
@@ -127,7 +127,7 @@ namespace Homing
             this.Text = "Server Manager";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ServerForm_FormClosed);
             this.Load += new System.EventHandler(this.ServerForm_Load);
-            this.tabControl1.ResumeLayout(false);
+            this.channelsView.ResumeLayout(false);
             this.ChAllView.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -138,10 +138,10 @@ namespace Homing
 
         private System.Windows.Forms.TreeView serverView;
         private System.Windows.Forms.Label activeLabel;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox announceBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl channelsView;
         private System.Windows.Forms.TabPage ChAllView;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView aChannelsView;
     }
 }
