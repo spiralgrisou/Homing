@@ -35,7 +35,7 @@ namespace HomingClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(686, 390);
+            this.ClientSize = new System.Drawing.Size(691, 385);
             this.Name = "ClientForm";
             this.Text = " ";
             this.Load += new System.EventHandler(this.ClientForm_Load);

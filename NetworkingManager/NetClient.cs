@@ -168,7 +168,8 @@ namespace NetworkingManager
                     Kill();
                 }
             }
-            Log("Client is not connected, Cannot sent command!", default, true);
+            else
+                Log("Client is not connected, Cannot sent command!", default, true);
         }
 
         public void Kill()
