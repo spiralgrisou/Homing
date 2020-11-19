@@ -30,7 +30,7 @@ namespace Homing
             NetData.MessageDispatcher dispatcher = Listener;
             NetData.ConnectionSuccess connectionSuccess = Connector;
             NetData.ConnectionDisconnection disconnected = Disconnector;
-            _netServer = new NetServer(IP_ADDRESS, PORT, 5, 50, dispatcher, disconnected, connectionSuccess);
+            _netServer = new NetServer(IP_ADDRESS, PORT, 5, 50, dispatcher, disconnected, connectionSuccess, true, false);
             MessageBox.Show("Server created in " + IP_ADDRESS + " on Port: " + PORT + ", Active Connections: " + _netServer.GetConnectionsCount(), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 

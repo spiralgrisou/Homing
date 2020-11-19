@@ -79,6 +79,7 @@ namespace NetworkingManager
                         catch (SocketException)
                         {
                             // Client disconnected
+                            Log("Client connection failed", default, true);
                             continue;
                         }
                     }
@@ -93,6 +94,7 @@ namespace NetworkingManager
             {
                 _netConnections.Remove(connection);
                 _topDisconnection(connection);
+                Log("Client deleted", default, true);
             }
         }
 
@@ -129,6 +131,7 @@ namespace NetworkingManager
         {
             _dead = true;
             _netConnections = new List<NetConnection>();
+            Log("Killed server", false, true);
         }
 
         public int GetConnectionsCount()
